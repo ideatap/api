@@ -4,11 +4,14 @@ defmodule Ideatap.Idea do
   schema "ideas" do
     field :title, :string
     field :description, :string
+    field :slug, :string
+
+    belongs_to :user, Ideatap.User
 
     timestamps
   end
 
-  @required_fields ~w(title description)
+  @required_fields ~w(title description slug)
   @optional_fields ~w()
 
   @doc """
@@ -20,5 +23,6 @@ defmodule Ideatap.Idea do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:slug)
   end
 end

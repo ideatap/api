@@ -12,7 +12,8 @@ defmodule Ideatap.IdeaView do
   def render("idea.json", %{idea: idea}) do
     %{id: idea.id,
       title: idea.title,
-      description: idea.description}
+      description: idea.description,
+      slug: idea.slug}
   end
 
 end

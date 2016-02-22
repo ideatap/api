@@ -13,7 +13,9 @@ config :ideatap, Ideatap.Endpoint,
   check_origin: false,
   watchers: []
 
-config :ideatap, cors_origin: "http://localhost:4200"
+config :ideatap,
+  cors_origin: "http://localhost:4200",
+  callback_redirect: "http://localhost:4200"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

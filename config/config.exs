@@ -19,6 +19,15 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :ueberauth, Ueberauth,
+  providers: [
+    twitter: {Ueberauth.Strategy.Twitter, []}
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Twitter.OAuth,
+  consumer_key: "hypY26Za6oV2oDIGQqWSjfzy3",
+  consumer_secret: "QWs8EAnA8svS8FFxfJ8GDcEq50BHe7sC0aQDAe2uvPXz45MKPm"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

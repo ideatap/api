@@ -4,7 +4,7 @@ defmodule Ideatap.Mixfile do
   def project do
     [app: :ideatap,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.1",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -19,7 +19,8 @@ defmodule Ideatap.Mixfile do
   def application do
     [mod: {Ideatap, []},
      applications: [:phoenix, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :comeonin, :ueberauth,
+                    :ueberauth_twitter]]
   end
 
   # Specifies which paths to compile per environment.
@@ -35,6 +36,11 @@ defmodule Ideatap.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
+     {:comeonin, "~> 2.1"},
+     {:credo, "~> 0.3", only: [:dev, :test]},
+     {:ueberauth, "~> 0.2"},
+     {:ueberauth_twitter, "~> 0.2"},
+     {:oauth, github: "tim/erlang-oauth"},
      {:ja_serializer, "~> 0.7.1"},
      {:cors_plug, "~> 0.1.4"}]
   end
