@@ -12,8 +12,8 @@ defmodule Ideatap.AuthController do
     case Auth.find_or_create_user(auth) do
       {:ok, user} -> finish_callback(conn, %{user: user})
       {:error, reason} -> finish_callback(conn, %{error: reason})
-    # end
-  # end
+    end
+  end
 
   defp finish_callback(conn, %{user: user}) do
     redirect_path = Application.get_env(:ideatap, :callback_redirect)
