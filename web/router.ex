@@ -10,13 +10,15 @@ defmodule Ideatap.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
   scope "/api", Ideatap do
     pipe_through :api
 
+    get "/", ApiController, :index
+
+    resources "/users", UserController, only: [:show, :index]
     resources "/ideas", IdeaController
   end
 

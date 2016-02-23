@@ -18,7 +18,7 @@ defmodule Ideatap.User do
   end
 
   @required_fields ~w(username)
-  @optional_fields ~w(first_name last_name bio email_address)
+  @optional_fields ~w(first_name last_name bio email_address image_url)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

@@ -1,10 +1,14 @@
 defmodule Ideatap.Auth do
 
   # TODO: better error handling
+  # TODO: once again, better error handling
   # TODO: add the users token and secret to their account, so we can use the TWITTER api
+
+  import Ecto.Query, only: [from: 2]
 
   alias Ecto.Changeset
   alias Ideatap.{User, Repo}
+  alias Ideatap.Helpers
 
   def find_or_create_user(%Ueberauth.Auth{} = auth) do
     basic_info = get_basic_info(auth)
@@ -23,11 +27,18 @@ defmodule Ideatap.Auth do
     {:ok, token}
   end
 
+  def get_user_by_token(conn) do
+    ["Bearer " <> token] = Plug.Conn.get_req_header(conn, "authorization")
+    {:ok, id} = Phoenix.Token.verify(conn, "user", token)
+    query = from u in User, where: u.id == ^id
+    Repo.one query
+  end
+
   def create_user(info) do
     changeset = User.changeset %User{}, %{
       username: info.username,
       bio: info.bio,
-      image: info.image
+      image_url: info.image
     }
 
     Repo.insert changeset

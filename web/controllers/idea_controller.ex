@@ -3,8 +3,10 @@ defmodule Ideatap.IdeaController do
   alias Ideatap.{Repo, Idea}
 
   plug :scrub_params, "idea" when action in [:create, :update]
+  plug Ideatap.Plugs.Auth, "auth" when action in [:create, :update, :delete]
 
   def index(conn, _params) do
+    IO.inspect conn.assigns
     render conn, "index.json", ideas: Repo.all Idea
   end
 
