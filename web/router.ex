@@ -18,7 +18,10 @@ defmodule Ideatap.Router do
 
     get "/", ApiController, :index
 
+    # Users
+    get "/users/me", UserController, :current
     resources "/users", UserController, only: [:show, :index]
+    
     resources "/ideas", IdeaController
   end
 
