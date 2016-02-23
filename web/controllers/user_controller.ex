@@ -9,11 +9,6 @@ defmodule Ideatap.UserController do
       users: Repo.all User
   end
 
-  # Gets the current user based on the authorization token.
-  def show(conn, %{"id" => "me"}) do
-    render conn, "show.json", user: Auth.get_user_by_token(conn)
-  end
-
   def current(conn, _params) do
     render conn, "show.json", user: Auth.get_user_by_token(conn)
   end
