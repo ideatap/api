@@ -6,7 +6,6 @@ defmodule Ideatap.IdeaController do
   plug Ideatap.Plugs.Auth, "auth" when action in [:create, :update, :delete]
 
   def index(conn, _params) do
-    IO.inspect conn.assigns
     render conn, "index.json", ideas: Repo.all Idea
   end
 
@@ -25,6 +24,7 @@ defmodule Ideatap.IdeaController do
   end
 
   def create(conn, %{"idea" => idea_params}) do
+    IO.inspect conn.assigns
     changeset = Idea.changeset %Idea{}, idea_params
     case Repo.insert changeset do
       {:ok, changeset} ->

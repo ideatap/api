@@ -40,7 +40,7 @@ defmodule Ideatap.AuthController do
   end
 
   def logout(conn, _params) do
-    # This should remove the token in the Authorization header from the users account.
+    IO.inspect conn.assigns.current_user
     conn
   end
 
